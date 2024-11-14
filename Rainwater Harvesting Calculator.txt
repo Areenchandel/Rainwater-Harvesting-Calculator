@@ -1,0 +1,39 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def calculate_rainwater():
+    try:
+        area = float(entry_area.get())
+        rainfall = float(entry_rainfall.get())
+        
+        # Calculation for rainwater harvested
+        harvested_water = area * rainfall * 0.001  # Converts mm to liters
+        
+        # Display result
+        result_label.config(text=f"Rainwater Harvested: {harvested_water:.2f} liters")
+    except ValueError:
+        messagebox.showerror("Input Error", "Please enter valid numbers for area and rainfall.")
+
+# Create the main window
+root = tk.Tk()
+root.title("Rainwater Harvest Calculator")
+
+# Create and place labels and entry widgets
+tk.Label(root, text="Roof Area (sq meters):").grid(row=0, column=0, padx=10, pady=10)
+entry_area = tk.Entry(root)
+entry_area.grid(row=0, column=1, padx=10, pady=10)
+
+tk.Label(root, text="Rainfall Depth (mm):").grid(row=1, column=0, padx=10, pady=10)
+entry_rainfall = tk.Entry(root)
+entry_rainfall.grid(row=1, column=1, padx=10, pady=10)
+
+# Calculate button
+calculate_button = tk.Button(root, text="Calculate", command=calculate_rainwater)
+calculate_button.grid(row=2, column=0, columnspan=2, pady=20)
+
+# Result label
+result_label = tk.Label(root, text="Rainwater Harvested: ")
+result_label.grid(row=3, column=0, columnspan=2, pady=10)
+
+# Run the application
+root.mainloop()
